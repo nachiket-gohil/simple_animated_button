@@ -1,7 +1,10 @@
+/// Simple Animated Button library
 library simple_animated_button;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+/// Exporting all buttons
+export 'bouncing_button.dart';
+export 'elevated_layer_button.dart';
+export 'horizontal_fill_button.dart';
+export 'rounded_fill_button.dart';
+export 'trailing_button.dart';
+export 'vertical_fill_button.dart';
