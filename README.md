@@ -16,6 +16,8 @@ know whether this package might be useful for them.
 
 ## Features
 
+[Imgur](https://i.imgur.com/UseGbss.gifv)
+
 TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
