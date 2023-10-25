@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ElevatedLayerButton extends StatefulWidget {
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final Duration? animationDuration;
   final Curve? animationCurve;
   final double? buttonHeight;
@@ -29,50 +29,56 @@ class ElevatedLayerButton extends StatefulWidget {
 class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
   bool buttonPressed = false;
 
+  bool get _enabled => widget.onClick != null;
+
+  bool get _disabled => !_enabled;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(() => buttonPressed = true),
-      child: SizedBox(
-        height: widget.buttonHeight,
-        width: widget.buttonWidth,
-        child: Stack(
-          alignment: Alignment.bottomRight,
-          children: [
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Container(
-                // base layer height width
-                width: (widget.buttonWidth ?? 100) - 10,
-                height: (widget.buttonHeight ?? 40) - 10,
-                decoration: widget.baseDecoration ??
-                    const BoxDecoration(
-                      color: Colors.black,
-                    ),
+    return Opacity(
+      opacity: _disabled ? 0.5 : 1,
+      child: GestureDetector(
+        onTap: () => setState(() => buttonPressed = true),
+        child: SizedBox(
+          height: widget.buttonHeight,
+          width: widget.buttonWidth,
+          child: Stack(
+            alignment: Alignment.bottomRight,
+            children: [
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  width: (widget.buttonWidth ?? 100) - 10,
+                  height: (widget.buttonHeight ?? 40) - 10,
+                  decoration: widget.baseDecoration ??
+                      const BoxDecoration(
+                        color: Colors.black,
+                      ),
+                ),
               ),
-            ),
-            AnimatedPositioned(
-              bottom: buttonPressed ? 0 : 5,
-              right: buttonPressed ? 0 : 5,
-              duration: widget.animationDuration ?? const Duration(milliseconds: 300),
-              curve: widget.animationCurve ?? Curves.ease,
-              onEnd: () {
-                setState(() => buttonPressed = false);
-                widget.onClick;
-              },
-              child: Container(
-                width: (widget.buttonWidth ?? 100) - 10,
-                height: (widget.buttonHeight ?? 100) - 10,
-                alignment: Alignment.center,
-                decoration: widget.topDecoration ??
-                    BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                    ),
-                child: widget.topLayerChild,
+              AnimatedPositioned(
+                bottom: buttonPressed ? 0 : 5,
+                right: buttonPressed ? 0 : 5,
+                duration: widget.animationDuration ?? const Duration(milliseconds: 300),
+                curve: widget.animationCurve ?? Curves.ease,
+                onEnd: () {
+                  setState(() => buttonPressed = false);
+                  widget.onClick;
+                },
+                child: Container(
+                  width: (widget.buttonWidth ?? 100) - 10,
+                  height: (widget.buttonHeight ?? 100) - 10,
+                  alignment: Alignment.center,
+                  decoration: widget.topDecoration ??
+                      BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                      ),
+                  child: widget.topLayerChild,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
