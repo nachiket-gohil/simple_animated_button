@@ -2,7 +2,7 @@
 
 #### This package contains efficient and simply designed animated buttons ready to use.
 
-<img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/simple_animated_button.gif" alt="package preview">
+<img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/simple_animated_button.gif"  width="400" alt="package preview">
 
 ## Getting Started
 
