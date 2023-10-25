@@ -1,31 +1,55 @@
 import 'package:flutter/material.dart';
 
+///
+/// [TrailingButton] Renders Trailing Button
+///
 class TrailingButton extends StatefulWidget {
-  final VoidCallback? onClick;
+  /// Define width for button
   final double? buttonWidth;
+
+  /// Define height for button
   final double? buttonHeight;
+
+  /// Define Label for button
   final String? label;
+
+  /// Define Trailing Icon for button
   final Widget? trailing;
+
+  /// Void Function for Button click
+  final VoidCallback? onClick;
+
+  /// Define Filling Duration - [Duration(milliseconds: 600)]
   final Duration? animationDuration;
-  final double? trailingMovement;
+
+  /// Define Animation Curve - [Curves.ease]
   final Curve? curve;
+
+  /// Define Label Style for button
   final TextStyle? labelStyle;
+
+  /// Define Gap between Label and Trailing Icon
   final double? trailingGap;
+
+  /// Define Margin for button
   final EdgeInsetsGeometry? buttonMargin;
+
+  /// Define Movement Value for button - eg. 10
+  final double? trailingMovement;
 
   const TrailingButton({
     Key? key,
-    required this.label,
     required this.buttonWidth,
     required this.buttonHeight,
+    required this.label,
+    required this.trailing,
     required this.onClick,
     required this.animationDuration,
     required this.curve,
     this.labelStyle,
-    this.trailing,
     this.trailingGap,
-    this.trailingMovement,
     this.buttonMargin,
+    this.trailingMovement,
   }) : super(key: key);
 
   @override
@@ -41,7 +65,8 @@ class _TrailingButtonState extends State<TrailingButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.buttonWidth ?? 150,
+      width:
+          (widget.buttonWidth ?? 150) + (widget.trailingGap ?? 4) + (widget.trailingMovement ?? 8),
       height: widget.buttonHeight ?? 40,
       alignment: Alignment.center,
       margin: widget.buttonMargin,

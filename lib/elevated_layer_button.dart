@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 
+///
+/// [ElevatedLayerButton] Renders Button layers in 3D perspective
+///
 class ElevatedLayerButton extends StatefulWidget {
-  final VoidCallback? onClick;
-  final Duration? animationDuration;
-  final Curve? animationCurve;
+  /// Define height for button
   final double? buttonHeight;
+
+  /// Define width for button
   final double? buttonWidth;
+
+  /// Define Clicking Duration - [Duration(milliseconds: 200)]
+  final Duration? animationDuration;
+
+  /// Define Animation Curve - [Curves.ease]
+  final Curve? animationCurve;
+
+  /// Void Function for Button click
+  final VoidCallback? onClick;
+
+  /// Define Base Layer [BoxDecoration] for button
   final BoxDecoration? baseDecoration;
+
+  /// Define Top Layer [BoxDecoration] for button
   final BoxDecoration? topDecoration;
+
+  /// Define Top Layer Child [Widget] for button
   final Widget? topLayerChild;
 
   const ElevatedLayerButton({

@@ -1,20 +1,53 @@
 import 'package:flutter/material.dart';
 
+///
+/// [RoundedFillButton] Renders Rounded Filled Button
+///
 class RoundedFillButton extends StatefulWidget {
-  final Duration? fillingDuration;
-  final Curve? curve;
+  /// Define width for button
   final double? buttonWidth;
+
+  /// Define height for button
   final double? buttonHeight;
-  final VoidCallback? onClick;
+
+  /// Define Fill Color for Rounded button
   final Color? filledColor;
-  final AlignmentGeometry? alignment;
-  final BoxBorder? filledBorder;
+
+  /// Define Fill Radius for Rounded button
   final double? fillRadius;
-  final EdgeInsetsGeometry? buttonPadding;
-  final EdgeInsetsGeometry? buttonMargin;
-  final Gradient? filledGradient;
-  final Widget? child;
+
+  /// Void Function for Button click
+  final VoidCallback? onClick;
+
+  /// Define Filling Duration - [Duration(milliseconds: 600)]
+  final Duration? fillingDuration;
+
+  /// Define Animation Curve - [Curves.ease]
+  final Curve? curve;
+
+  /// Show Initial Round shape for Button
   final bool? showInitialShape;
+
+  /// Define Fill Border
+  final BoxBorder? filledBorder;
+
+  /// Define Fill Gradient
+  final Gradient? filledGradient;
+
+  /// Define Actual Button Decoration
+  final BoxDecoration? buttonDecoration;
+
+  /// Define Button Padding
+  final EdgeInsetsGeometry? buttonPadding;
+
+  /// Define Button Margin
+  final EdgeInsetsGeometry? buttonMargin;
+
+  /// Define Button Alignment
+  final AlignmentGeometry? alignment;
+
+  /// Define Child [Widget] for button
+  final Widget? child;
 
   const RoundedFillButton({
     Key? key,
@@ -28,8 +61,9 @@ class RoundedFillButton extends StatefulWidget {
     this.showInitialShape,
     this.filledBorder,
     this.filledGradient,
-    this.buttonMargin,
+    this.buttonDecoration,
     this.buttonPadding,
+    this.buttonMargin,
     this.alignment,
     this.child,
   }) : super(key: key);
@@ -82,6 +116,10 @@ class _RoundedFillButtonState extends State<RoundedFillButton> {
               Container(
                 height: widget.buttonHeight ?? 40,
                 alignment: widget.alignment ?? Alignment.center,
+                decoration: widget.buttonDecoration ??
+                    const BoxDecoration(
+                      color: Colors.white,
+                    ),
                 child: widget.child,
               ),
             ],

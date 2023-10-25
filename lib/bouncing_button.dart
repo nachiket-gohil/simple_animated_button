@@ -1,30 +1,54 @@
 import 'package:flutter/material.dart';
 
+///
+/// [BouncingButton] Renders Bouncing Button
+///
 class BouncingButton extends StatefulWidget {
-  final Duration? bouncingDuration;
-  final Curve? curve;
-  final double buttonWidth;
-  final double? buttonBouncingWidth;
+  /// Define width for button
+  final double? buttonWidth;
+
+  /// Define height for button
   final double? buttonHeight;
-  final Decoration? buttonDecoration;
-  final Widget? child;
+
+  /// Define Clicking Duration - [Duration(milliseconds: 200)]
+  final Duration? bouncingDuration;
+
+  /// Define Animation Curve - [Curves.ease]
+  final Curve? curve;
+
+  /// Void Function for Button click
   final VoidCallback? onClick;
-  final AlignmentGeometry? alignment;
-  final EdgeInsetsGeometry? buttonPadding;
+
+  /// Define only Bouncing width for button - eg. 10-50
+  final double? buttonBouncingWidth;
+
+  /// Define [BoxDecoration] for button
+  final Decoration? buttonDecoration;
+
+  /// Define Button [Margin]
   final EdgeInsetsGeometry? buttonMargin;
+
+  /// Define Button [Padding]
+  final EdgeInsetsGeometry? buttonPadding;
+
+  /// Child Alignment in Button
+  final AlignmentGeometry? alignment;
+
+  /// Define Child [Widget] for button
+  final Widget? child;
 
   const BouncingButton({
     Key? key,
     required this.buttonWidth,
     required this.buttonHeight,
-    required this.onClick,
     required this.bouncingDuration,
     required this.curve,
+    required this.onClick,
     this.buttonBouncingWidth,
+    this.buttonDecoration,
     this.buttonMargin,
     this.buttonPadding,
     this.alignment,
-    this.buttonDecoration,
     this.child,
   }) : super(key: key);
 
@@ -34,6 +58,7 @@ class BouncingButton extends StatefulWidget {
 
 class _BouncingButtonState extends State<BouncingButton> {
   bool bouncing = false;
+
   bool get _enabled => widget.onClick != null;
 
   bool get _disabled => !_enabled;
@@ -48,8 +73,8 @@ class _BouncingButtonState extends State<BouncingButton> {
           duration: widget.bouncingDuration ?? const Duration(milliseconds: 200),
           curve: widget.curve ?? Curves.easeOut,
           width: bouncing
-              ? widget.buttonWidth
-              : widget.buttonWidth + (widget.buttonBouncingWidth ?? 20),
+              ? widget.buttonWidth ?? 80
+              : widget.buttonWidth ?? 80 + (widget.buttonBouncingWidth ?? 20),
           onEnd: () {
             setState(() => bouncing = false);
             widget.onClick;
@@ -58,7 +83,7 @@ class _BouncingButtonState extends State<BouncingButton> {
             height: widget.buttonHeight ?? 40,
             width: bouncing
                 ? widget.buttonWidth
-                : widget.buttonWidth + (widget.buttonBouncingWidth ?? 20),
+                : widget.buttonWidth ?? 80 + (widget.buttonBouncingWidth ?? 20),
             alignment: widget.alignment ?? Alignment.center,
             padding: widget.buttonPadding,
             margin: widget.buttonMargin,
