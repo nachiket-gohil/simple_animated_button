@@ -1,7 +1,14 @@
 name: simple_animated_button
 description: This package offers a collection of ready-to-use, efficiently crafted, and elegantly designed animated buttons.
 version: 0.0.2
-homepage: https://github.com/NachiketGohil/simple_animated_button
+
+homepage: https://github.com/NachiketGohil
+repository: https://github.com/NachiketGohil/simple_animated_button
+
+topics:
+  - animation
+  - widget
+  - button
 
 environment:
   sdk: '>=3.1.3 <4.0.0'
@@ -14,7 +21,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  lints: ^2.1.1
 
 
 flutter:
