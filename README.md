@@ -27,30 +27,32 @@ import 'package:simple_animated_button/simple_animated_button.dart';
 
 #### Elevated Layer Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/elevated.png" width="350" alt="elevated layer button preview">
-`
-    ElevatedLayerButton(
-      onClick: () {},
-      buttonHeight: 60,
-      buttonWidth: 270,
-      animationDuration: const Duration(milliseconds: 200),
-      animationCurve: Curves.ease,
-      topDecoration: BoxDecoration(  
-        color: Colors.amber,  
-        border: Border.all(),  
-      ),
-      topLayerChild: Text(  
-        "ElevatedLayerButton()",  
-        style: monoStyle,  
-      ),
-      baseDecoration: BoxDecoration(  
-        color: Colors.green,  
-        border: Border.all(),  
-      ),  
-    ),
-`
+
+```dart
+ElevatedLayerButton(
+  onClick: () {},
+  buttonHeight: 60,
+  buttonWidth: 270,
+  animationDuration: const Duration(milliseconds: 200),
+  animationCurve: Curves.ease,
+  topDecoration: BoxDecoration(  
+    color: Colors.amber,  
+    border: Border.all(),  
+  ),
+  topLayerChild: Text(  
+    "ElevatedLayerButton()",  
+    style: monoStyle,  
+  ),
+  baseDecoration: BoxDecoration(  
+    color: Colors.green,  
+    border: Border.all(),  
+  ),  
+),
+```
 
 #### Horizontal Fill Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/horizontal.png" width="350" alt="horizontal fill button preview">
+
 ```dart
 HorizontalFillButton(  
   onClick: () {},  
@@ -71,6 +73,7 @@ HorizontalFillButton(
 
 #### Vertical Fill Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/vertical.png" width="350" alt="vertical fill button preview">
+
 ```dart
 VerticalFillButton(  
   onClick: () {},  
@@ -91,6 +94,7 @@ VerticalFillButton(
 
 #### Rounded Fill Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/rounded.png" width="350" alt="rouded fill button preview">
+
 ```dart
 RoundedFillButton(  
   onClick: () {},  
@@ -111,6 +115,7 @@ RoundedFillButton(
 
 #### Bouncing Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/bounce.png" width="350" alt="bouncing button preview">
+
 ```dart
 BouncingButton(  
   onClick: () {},  
@@ -133,6 +138,7 @@ BouncingButton(
 
 #### Trailing Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/trailing.png" width="350" alt="trailing button preview">
+
 ```dart
 TrailingButton(  
   onClick: () {},  
