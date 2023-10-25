@@ -6,7 +6,7 @@ class VerticalFillButton extends StatefulWidget {
   final double? buttonWidth;
   final double? buttonHeight;
   final double? initialThickness;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final Color? filledColor;
   final AlignmentGeometry? alignment;
   final BoxBorder? filledBorder;
@@ -40,42 +40,49 @@ class VerticalFillButton extends StatefulWidget {
 
 class _VerticalFillButtonState extends State<VerticalFillButton> {
   bool buttonPressed = false;
+  bool get _enabled => widget.onClick != null;
+
+  bool get _disabled => !_enabled;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(() => buttonPressed = true),
-      child: Container(
-        width: widget.buttonWidth ?? 80,
-        height: widget.buttonHeight ?? 50,
-        alignment: widget.alignment ?? Alignment.center,
-        padding: widget.buttonPadding,
-        margin: widget.buttonMargin,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            AnimatedContainer(
-              duration: widget.fillingDuration ?? const Duration(milliseconds: 600),
-              width: widget.buttonWidth ?? 80,
-              height: buttonPressed ? (widget.buttonHeight ?? 50) : (widget.initialThickness ?? 0),
-              curve: widget.curve ?? Curves.ease,
-              decoration: BoxDecoration(
-                color: widget.filledColor ?? Colors.amber,
-                borderRadius: BorderRadius.circular(widget.cornerRadius ?? 0),
-                border: widget.filledBorder,
-                gradient: widget.filledGradient,
+    return Opacity(
+      opacity: _disabled ? 0.5 : 1,
+      child: GestureDetector(
+        onTap: () => setState(() => buttonPressed = true),
+        child: Container(
+          width: widget.buttonWidth ?? 80,
+          height: widget.buttonHeight ?? 50,
+          alignment: widget.alignment ?? Alignment.center,
+          padding: widget.buttonPadding,
+          margin: widget.buttonMargin,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              AnimatedContainer(
+                duration: widget.fillingDuration ?? const Duration(milliseconds: 600),
+                width: widget.buttonWidth ?? 80,
+                height:
+                    buttonPressed ? (widget.buttonHeight ?? 50) : (widget.initialThickness ?? 0),
+                curve: widget.curve ?? Curves.ease,
+                decoration: BoxDecoration(
+                  color: widget.filledColor ?? Colors.amber,
+                  borderRadius: BorderRadius.circular(widget.cornerRadius ?? 0),
+                  border: widget.filledBorder,
+                  gradient: widget.filledGradient,
+                ),
+                onEnd: () {
+                  setState(() => buttonPressed = false);
+                  widget.onClick;
+                },
               ),
-              onEnd: () {
-                setState(() => buttonPressed = false);
-                widget.onClick;
-              },
-            ),
-            Container(
-              height: widget.buttonHeight ?? 50,
-              width: widget.buttonWidth ?? 80,
-              alignment: widget.alignment ?? Alignment.center,
-              child: widget.child,
-            ),
-          ],
+              Container(
+                height: widget.buttonHeight ?? 50,
+                width: widget.buttonWidth ?? 80,
+                alignment: widget.alignment ?? Alignment.center,
+                child: widget.child,
+              ),
+            ],
+          ),
         ),
       ),
     );

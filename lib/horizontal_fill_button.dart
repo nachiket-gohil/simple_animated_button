@@ -6,7 +6,7 @@ class HorizontalFillButton extends StatefulWidget {
   final double? buttonWidth;
   final double? buttonHeight;
   final double? initialThickness;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final Color? filledColor;
   final AlignmentGeometry? alignment;
   final BoxBorder? filledBorder;
@@ -40,39 +40,45 @@ class HorizontalFillButton extends StatefulWidget {
 
 class _HorizontalFillButtonState extends State<HorizontalFillButton> {
   bool buttonPressed = false;
+  bool get _enabled => widget.onClick != null;
+
+  bool get _disabled => !_enabled;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(() => buttonPressed = true),
-      child: Container(
-        width: widget.buttonWidth ?? 100,
-        height: widget.buttonHeight ?? 40,
-        alignment: widget.alignment ?? Alignment.center,
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            AnimatedContainer(
-              duration: widget.fillingDuration ?? const Duration(milliseconds: 600),
-              curve: widget.curve ?? Curves.easeIn,
-              width: buttonPressed ? widget.buttonWidth : widget.initialThickness ?? 0,
-              height: widget.buttonHeight ?? 40,
-              decoration: BoxDecoration(
-                color: widget.filledColor ?? Colors.amber,
-                borderRadius: BorderRadius.circular(widget.cornerRadius ?? 0),
-                border: widget.filledBorder,
-                gradient: widget.filledGradient,
+    return Opacity(
+      opacity: _disabled ? 0.5 : 1.0,
+      child: GestureDetector(
+        onTap: () => setState(() => buttonPressed = true),
+        child: Container(
+          width: widget.buttonWidth ?? 100,
+          height: widget.buttonHeight ?? 40,
+          alignment: widget.alignment ?? Alignment.center,
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              AnimatedContainer(
+                duration: widget.fillingDuration ?? const Duration(milliseconds: 600),
+                curve: widget.curve ?? Curves.easeIn,
+                width: buttonPressed ? widget.buttonWidth : widget.initialThickness ?? 0,
+                height: widget.buttonHeight ?? 40,
+                decoration: BoxDecoration(
+                  color: widget.filledColor ?? Colors.amber,
+                  borderRadius: BorderRadius.circular(widget.cornerRadius ?? 0),
+                  border: widget.filledBorder,
+                  gradient: widget.filledGradient,
+                ),
+                onEnd: () {
+                  setState(() => buttonPressed = false);
+                  widget.onClick;
+                },
               ),
-              onEnd: () {
-                setState(() => buttonPressed = false);
-                widget.onClick();
-              },
-            ),
-            Container(
-              height: widget.buttonHeight ?? 40,
-              alignment: widget.alignment ?? Alignment.center,
-              child: widget.child,
-            ),
-          ],
+              Container(
+                height: widget.buttonHeight ?? 40,
+                alignment: widget.alignment ?? Alignment.center,
+                child: widget.child,
+              ),
+            ],
+          ),
         ),
       ),
     );

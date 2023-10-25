@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TrailingButton extends StatefulWidget {
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final double? buttonWidth;
   final double? buttonHeight;
   final String? label;
@@ -34,6 +34,10 @@ class TrailingButton extends StatefulWidget {
 
 class _TrailingButtonState extends State<TrailingButton> {
   bool buttonPressed = false;
+
+  bool get _enabled => widget.onClick != null;
+
+  bool get _disabled => !_enabled;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,34 +45,37 @@ class _TrailingButtonState extends State<TrailingButton> {
       height: widget.buttonHeight ?? 40,
       alignment: Alignment.center,
       margin: widget.buttonMargin,
-      child: GestureDetector(
-        onTap: () => setState(() => buttonPressed = true),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              widget.label ?? "Trailing Button",
-              style: widget.labelStyle,
-            ),
-            SizedBox(width: widget.trailingGap ?? 4),
-            AnimatedPadding(
-              padding: EdgeInsets.only(
-                left: buttonPressed ? (widget.trailingMovement ?? 8) : 0,
+      child: Opacity(
+        opacity: _disabled ? 0.5 : 1,
+        child: GestureDetector(
+          onTap: () => setState(() => buttonPressed = true),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                widget.label ?? "Trailing Button",
+                style: widget.labelStyle,
               ),
-              duration: widget.animationDuration ?? const Duration(milliseconds: 600),
-              curve: widget.curve ?? Curves.ease,
-              onEnd: () {
-                setState(() => buttonPressed = false);
-                widget.onClick;
-              },
-              child: widget.trailing ??
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: (widget.buttonHeight ?? 40) - 10,
-                  ),
-            ),
-          ],
+              SizedBox(width: widget.trailingGap ?? 4),
+              AnimatedPadding(
+                padding: EdgeInsets.only(
+                  left: buttonPressed ? (widget.trailingMovement ?? 8) : 0,
+                ),
+                duration: widget.animationDuration ?? const Duration(milliseconds: 600),
+                curve: widget.curve ?? Curves.ease,
+                onEnd: () {
+                  setState(() => buttonPressed = false);
+                  widget.onClick;
+                },
+                child: widget.trailing ??
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: (widget.buttonHeight ?? 40) - 10,
+                    ),
+              ),
+            ],
+          ),
         ),
       ),
     );

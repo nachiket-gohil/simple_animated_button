@@ -5,7 +5,7 @@ class RoundedFillButton extends StatefulWidget {
   final Curve? curve;
   final double? buttonWidth;
   final double? buttonHeight;
-  final VoidCallback onClick;
+  final VoidCallback? onClick;
   final Color? filledColor;
   final AlignmentGeometry? alignment;
   final BoxBorder? filledBorder;
@@ -40,6 +40,9 @@ class RoundedFillButton extends StatefulWidget {
 
 class _RoundedFillButtonState extends State<RoundedFillButton> {
   bool buttonPressed = false;
+  bool get _enabled => widget.onClick != null;
+
+  bool get _disabled => !_enabled;
   double? setFilledWidthAndShape() {
     double shapeWidth = (widget.showInitialShape ?? false) ? (widget.fillRadius ?? 30) : 0;
     return buttonPressed ? widget.buttonWidth : shapeWidth;
@@ -47,39 +50,42 @@ class _RoundedFillButtonState extends State<RoundedFillButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(() => buttonPressed = true),
-      child: Container(
-        width: widget.buttonWidth ?? 100,
-        height: widget.buttonHeight ?? 40,
-        padding: widget.buttonPadding,
-        margin: widget.buttonMargin,
-        alignment: widget.alignment ?? Alignment.center,
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            AnimatedContainer(
-              duration: widget.fillingDuration ?? const Duration(milliseconds: 500),
-              width: setFilledWidthAndShape(),
-              height: widget.buttonHeight ?? 40,
-              curve: widget.curve ?? Curves.ease,
-              onEnd: () {
-                setState(() => buttonPressed = false);
-                widget.onClick;
-              },
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(widget.fillRadius ?? 30),
-                color: widget.filledColor ?? Colors.amber,
-                border: widget.filledBorder,
-                gradient: widget.filledGradient,
+    return Opacity(
+      opacity: _disabled ? 0.5 : 1,
+      child: GestureDetector(
+        onTap: () => setState(() => buttonPressed = true),
+        child: Container(
+          width: widget.buttonWidth ?? 100,
+          height: widget.buttonHeight ?? 40,
+          padding: widget.buttonPadding,
+          margin: widget.buttonMargin,
+          alignment: widget.alignment ?? Alignment.center,
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              AnimatedContainer(
+                duration: widget.fillingDuration ?? const Duration(milliseconds: 500),
+                width: setFilledWidthAndShape(),
+                height: widget.buttonHeight ?? 40,
+                curve: widget.curve ?? Curves.ease,
+                onEnd: () {
+                  setState(() => buttonPressed = false);
+                  widget.onClick;
+                },
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(widget.fillRadius ?? 30),
+                  color: widget.filledColor ?? Colors.amber,
+                  border: widget.filledBorder,
+                  gradient: widget.filledGradient,
+                ),
               ),
-            ),
-            Container(
-              height: widget.buttonHeight ?? 40,
-              alignment: widget.alignment ?? Alignment.center,
-              child: widget.child,
-            ),
-          ],
+              Container(
+                height: widget.buttonHeight ?? 40,
+                alignment: widget.alignment ?? Alignment.center,
+                child: widget.child,
+              ),
+            ],
+          ),
         ),
       ),
     );
