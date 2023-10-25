@@ -15,7 +15,7 @@ dependencies:
 
 [2] Run `flutter pub get`
 
-Now in your Dart code, add import to use the package:
+[3] Now in your Dart code, add import to use the package:
 
 ```dart
 import 'package:simple_animated_button/simple_animated_button.dart';
