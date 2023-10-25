@@ -27,7 +27,7 @@ import 'package:simple_animated_button/simple_animated_button.dart';
 
 #### Elevated Layer Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/elevated.png" width="350" alt="elevated layer button preview">
-```dart
+`
     ElevatedLayerButton(
       onClick: () {},
       buttonHeight: 60,
@@ -47,7 +47,7 @@ import 'package:simple_animated_button/simple_animated_button.dart';
         border: Border.all(),  
       ),  
     ),
-```
+`
 
 #### Horizontal Fill Button
 <img src="https://github.com/NachiketGohil/simple_animated_button/blob/03f111358480a8f0cc781a572e659aa6db5f9583/example/screenshots/horizontal.png" width="350" alt="horizontal fill button preview">
