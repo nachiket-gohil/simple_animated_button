@@ -8,3 +8,7 @@
 * Documentation added for Buttons
 * Description elaborated
 * Passed Static Analysis
+
+## 0.0.3
+
+* Button OnClick Code refactored
