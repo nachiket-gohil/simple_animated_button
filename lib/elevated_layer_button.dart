@@ -82,7 +82,9 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                 curve: widget.animationCurve ?? Curves.ease,
                 onEnd: () {
                   setState(() => buttonPressed = false);
-                  widget.onClick;
+                  if (_enabled) {
+                    widget.onClick!();
+                  }
                 },
                 child: Container(
                   width: (widget.buttonWidth ?? 100) - 10,

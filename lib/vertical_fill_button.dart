@@ -106,7 +106,9 @@ class _VerticalFillButtonState extends State<VerticalFillButton> {
                 ),
                 onEnd: () {
                   setState(() => buttonPressed = false);
-                  widget.onClick;
+                  if (_enabled) {
+                    widget.onClick!();
+                  }
                 },
               ),
               Container(

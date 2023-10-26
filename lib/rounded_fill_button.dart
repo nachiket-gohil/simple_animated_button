@@ -104,7 +104,9 @@ class _RoundedFillButtonState extends State<RoundedFillButton> {
                 curve: widget.curve ?? Curves.ease,
                 onEnd: () {
                   setState(() => buttonPressed = false);
-                  widget.onClick;
+                  if (_enabled) {
+                    widget.onClick!();
+                  }
                 },
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(widget.fillRadius ?? 30),

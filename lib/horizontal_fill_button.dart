@@ -106,7 +106,9 @@ class _HorizontalFillButtonState extends State<HorizontalFillButton> {
                 ),
                 onEnd: () {
                   setState(() => buttonPressed = false);
-                  widget.onClick;
+                  if (_enabled) {
+                    widget.onClick!();
+                  }
                 },
               ),
               Container(

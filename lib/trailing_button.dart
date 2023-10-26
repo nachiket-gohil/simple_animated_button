@@ -91,7 +91,9 @@ class _TrailingButtonState extends State<TrailingButton> {
                 curve: widget.curve ?? Curves.ease,
                 onEnd: () {
                   setState(() => buttonPressed = false);
-                  widget.onClick;
+                  if (_enabled) {
+                    widget.onClick!();
+                  }
                 },
                 child: widget.trailing ??
                     Icon(

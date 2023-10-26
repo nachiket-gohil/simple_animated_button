@@ -77,7 +77,9 @@ class _BouncingButtonState extends State<BouncingButton> {
               : widget.buttonWidth ?? 80 + (widget.buttonBouncingWidth ?? 20),
           onEnd: () {
             setState(() => bouncing = false);
-            widget.onClick;
+            if (_enabled) {
+              widget.onClick!();
+            }
           },
           child: Container(
             height: widget.buttonHeight ?? 40,
