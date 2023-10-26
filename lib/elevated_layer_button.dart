@@ -78,7 +78,8 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
               AnimatedPositioned(
                 bottom: buttonPressed ? 0 : 5,
                 right: buttonPressed ? 0 : 5,
-                duration: widget.animationDuration ?? const Duration(milliseconds: 300),
+                duration: widget.animationDuration ??
+                    const Duration(milliseconds: 300),
                 curve: widget.animationCurve ?? Curves.ease,
                 onEnd: () {
                   setState(() => buttonPressed = false);

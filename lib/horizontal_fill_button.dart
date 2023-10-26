@@ -94,9 +94,12 @@ class _HorizontalFillButtonState extends State<HorizontalFillButton> {
             alignment: Alignment.centerLeft,
             children: [
               AnimatedContainer(
-                duration: widget.fillingDuration ?? const Duration(milliseconds: 600),
+                duration:
+                    widget.fillingDuration ?? const Duration(milliseconds: 600),
                 curve: widget.curve ?? Curves.easeIn,
-                width: buttonPressed ? widget.buttonWidth ?? 100 : widget.initialThickness ?? 0,
+                width: buttonPressed
+                    ? widget.buttonWidth ?? 100
+                    : widget.initialThickness ?? 0,
                 height: widget.buttonHeight ?? 40,
                 decoration: BoxDecoration(
                   color: widget.filledColor ?? Colors.amber,

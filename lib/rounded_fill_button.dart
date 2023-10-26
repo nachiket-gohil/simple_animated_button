@@ -78,7 +78,8 @@ class _RoundedFillButtonState extends State<RoundedFillButton> {
 
   bool get _disabled => !_enabled;
   double? setFilledWidthAndShape() {
-    double shapeWidth = (widget.showInitialShape ?? false) ? (widget.fillRadius ?? 30) : 0;
+    double shapeWidth =
+        (widget.showInitialShape ?? false) ? (widget.fillRadius ?? 30) : 0;
     return buttonPressed ? widget.buttonWidth : shapeWidth;
   }
 
@@ -98,7 +99,8 @@ class _RoundedFillButtonState extends State<RoundedFillButton> {
             alignment: Alignment.centerLeft,
             children: [
               AnimatedContainer(
-                duration: widget.fillingDuration ?? const Duration(milliseconds: 500),
+                duration:
+                    widget.fillingDuration ?? const Duration(milliseconds: 500),
                 width: setFilledWidthAndShape(),
                 height: widget.buttonHeight ?? 40,
                 curve: widget.curve ?? Curves.ease,

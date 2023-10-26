@@ -93,10 +93,12 @@ class _VerticalFillButtonState extends State<VerticalFillButton> {
             alignment: Alignment.bottomCenter,
             children: [
               AnimatedContainer(
-                duration: widget.fillingDuration ?? const Duration(milliseconds: 600),
+                duration:
+                    widget.fillingDuration ?? const Duration(milliseconds: 600),
                 width: widget.buttonWidth ?? 80,
-                height:
-                    buttonPressed ? (widget.buttonHeight ?? 50) : (widget.initialThickness ?? 0),
+                height: buttonPressed
+                    ? (widget.buttonHeight ?? 50)
+                    : (widget.initialThickness ?? 0),
                 curve: widget.curve ?? Curves.ease,
                 decoration: BoxDecoration(
                   color: widget.filledColor ?? Colors.amber,

@@ -65,8 +65,9 @@ class _TrailingButtonState extends State<TrailingButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:
-          (widget.buttonWidth ?? 150) + (widget.trailingGap ?? 4) + (widget.trailingMovement ?? 8),
+      width: (widget.buttonWidth ?? 150) +
+          (widget.trailingGap ?? 4) +
+          (widget.trailingMovement ?? 8),
       height: widget.buttonHeight ?? 40,
       alignment: Alignment.center,
       margin: widget.buttonMargin,
@@ -87,7 +88,8 @@ class _TrailingButtonState extends State<TrailingButton> {
                 padding: EdgeInsets.only(
                   left: buttonPressed ? (widget.trailingMovement ?? 8) : 0,
                 ),
-                duration: widget.animationDuration ?? const Duration(milliseconds: 600),
+                duration: widget.animationDuration ??
+                    const Duration(milliseconds: 600),
                 curve: widget.curve ?? Curves.ease,
                 onEnd: () {
                   setState(() => buttonPressed = false);

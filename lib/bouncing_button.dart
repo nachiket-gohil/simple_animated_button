@@ -70,7 +70,8 @@ class _BouncingButtonState extends State<BouncingButton> {
       child: GestureDetector(
         onTap: () => setState(() => bouncing = true),
         child: AnimatedContainer(
-          duration: widget.bouncingDuration ?? const Duration(milliseconds: 200),
+          duration:
+              widget.bouncingDuration ?? const Duration(milliseconds: 200),
           curve: widget.curve ?? Curves.easeOut,
           width: bouncing
               ? widget.buttonWidth ?? 80
