@@ -75,7 +75,7 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   height: (widget.buttonHeight ?? 40) - 10,
                   decoration: widget.baseDecoration?.copyWith(
                     borderRadius: widget.borderRadius,
-                    border: Border.all(color: Colors.black), // Specify the border color here
+                    border: Border.all(color: Colors.black),
                   ) ??
                   const BoxDecoration(
                     color: Colors.black,
@@ -100,7 +100,7 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   alignment: Alignment.center,
                   decoration: widget.topDecoration?.copyWith(
                       borderRadius: widget.borderRadius,
-                      border: Border.all(color: Colors.black), // Specify the border color here
+                      border: Border.all(color: Colors.black),
                     ) ??
                     const BoxDecoration(
                       color: Colors.black,
