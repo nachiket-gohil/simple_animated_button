@@ -28,6 +28,9 @@ class ElevatedLayerButton extends StatefulWidget {
   /// Define Top Layer Child [Widget] for button
   final Widget? topLayerChild;
 
+  /// if anyone wants to add slightly rounded corners
+  final BorderRadius? borderRadius;
+
   const ElevatedLayerButton({
     Key? key,
     required this.buttonHeight,
@@ -38,6 +41,7 @@ class ElevatedLayerButton extends StatefulWidget {
     this.baseDecoration,
     this.topDecoration,
     this.topLayerChild,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -69,10 +73,13 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                 child: Container(
                   width: (widget.buttonWidth ?? 100) - 10,
                   height: (widget.buttonHeight ?? 40) - 10,
-                  decoration: widget.baseDecoration ??
-                      const BoxDecoration(
-                        color: Colors.black,
-                      ),
+                  decoration: widget.baseDecoration?.copyWith(
+                    borderRadius: widget.borderRadius,
+                    border: Border.all(color: Colors.black), // Specify the border color here
+                  ) ??
+                  const BoxDecoration(
+                    color: Colors.black,
+                  ),
                 ),
               ),
               AnimatedPositioned(
@@ -91,10 +98,13 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   width: (widget.buttonWidth ?? 100) - 10,
                   height: (widget.buttonHeight ?? 100) - 10,
                   alignment: Alignment.center,
-                  decoration: widget.topDecoration ??
-                      BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                      ),
+                  decoration: widget.topDecoration?.copyWith(
+                      borderRadius: widget.borderRadius,
+                      border: Border.all(color: Colors.black), // Specify the border color here
+                    ) ??
+                    const BoxDecoration(
+                      color: Colors.black,
+                    ),
                   child: widget.topLayerChild,
                 ),
               ),
