@@ -59,9 +59,12 @@ class TrailingButton extends StatefulWidget {
 class _TrailingButtonState extends State<TrailingButton> {
   bool buttonPressed = false;
 
+  bool animationCompleted = true;
+
   bool get _enabled => widget.onClick != null;
 
   bool get _disabled => !_enabled;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,7 +77,12 @@ class _TrailingButtonState extends State<TrailingButton> {
       child: Opacity(
         opacity: _disabled ? 0.5 : 1,
         child: GestureDetector(
-          onTap: () => setState(() => buttonPressed = true),
+          onTap: () {
+            setState(() {
+              buttonPressed = true;
+              animationCompleted = false;
+            });
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,9 +100,12 @@ class _TrailingButtonState extends State<TrailingButton> {
                     const Duration(milliseconds: 600),
                 curve: widget.curve ?? Curves.ease,
                 onEnd: () {
-                  setState(() => buttonPressed = false);
-                  if (_enabled) {
-                    widget.onClick!();
+                  if (!animationCompleted) {
+                    animationCompleted = true;
+                    setState(() => buttonPressed = false);
+                    if (_enabled) {
+                      widget.onClick!();
+                    }
                   }
                 },
                 child: widget.trailing ??

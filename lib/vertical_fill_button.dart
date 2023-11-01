@@ -74,15 +74,24 @@ class VerticalFillButton extends StatefulWidget {
 
 class _VerticalFillButtonState extends State<VerticalFillButton> {
   bool buttonPressed = false;
+
+  bool animationCompleted = true;
+
   bool get _enabled => widget.onClick != null;
 
   bool get _disabled => !_enabled;
+
   @override
   Widget build(BuildContext context) {
     return Opacity(
       opacity: _disabled ? 0.5 : 1,
       child: GestureDetector(
-        onTap: () => setState(() => buttonPressed = true),
+        onTap: () {
+          setState(() {
+            buttonPressed = true;
+            animationCompleted = false;
+          });
+        },
         child: Container(
           width: widget.buttonWidth ?? 80,
           height: widget.buttonHeight ?? 50,
@@ -107,9 +116,12 @@ class _VerticalFillButtonState extends State<VerticalFillButton> {
                   gradient: widget.filledGradient,
                 ),
                 onEnd: () {
-                  setState(() => buttonPressed = false);
-                  if (_enabled) {
-                    widget.onClick!();
+                  if (!animationCompleted) {
+                    animationCompleted = true;
+                    setState(() => buttonPressed = false);
+                    if (_enabled) {
+                      widget.onClick!();
+                    }
                   }
                 },
               ),

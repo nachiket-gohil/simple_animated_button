@@ -59,6 +59,8 @@ class BouncingButton extends StatefulWidget {
 class _BouncingButtonState extends State<BouncingButton> {
   bool bouncing = false;
 
+  bool animationCompleted = true;
+
   bool get _enabled => widget.onClick != null;
 
   bool get _disabled => !_enabled;
@@ -68,7 +70,12 @@ class _BouncingButtonState extends State<BouncingButton> {
     return Opacity(
       opacity: _disabled ? 0.5 : 1,
       child: GestureDetector(
-        onTap: () => setState(() => bouncing = true),
+        onTap: () {
+          setState(() {
+            bouncing = true;
+            animationCompleted = false;
+          });
+        },
         child: AnimatedContainer(
           duration:
               widget.bouncingDuration ?? const Duration(milliseconds: 200),
@@ -77,9 +84,12 @@ class _BouncingButtonState extends State<BouncingButton> {
               ? widget.buttonWidth ?? 80
               : widget.buttonWidth ?? 80 + (widget.buttonBouncingWidth ?? 20),
           onEnd: () {
-            setState(() => bouncing = false);
-            if (_enabled) {
-              widget.onClick!();
+            if (!animationCompleted) {
+              animationCompleted = true;
+              setState(() => bouncing = false);
+              if (_enabled) {
+                widget.onClick!();
+              }
             }
           },
           child: Container(

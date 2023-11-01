@@ -1,9 +1,14 @@
 name: simple_animated_button
 description: This package offers a collection of ready-to-use, efficiently crafted, and elegantly designed animated buttons.
-version: 0.0.4
+version: 0.0.5
 
-homepage: https://github.com/NachiketGohil
+homepage: https://github.com/NachiketGohil/simple_animated_button/blob/main/README.md
 repository: https://github.com/NachiketGohil/simple_animated_button
+license: BSD-3
+
+maintainers:
+  - name: Nachiket Gohil
+    email: nachiketgohil185@gmail.com
 
 topics:
   - animation

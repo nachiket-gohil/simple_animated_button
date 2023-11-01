@@ -47,6 +47,8 @@ class ElevatedLayerButton extends StatefulWidget {
 class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
   bool buttonPressed = false;
 
+  bool animationCompleted = true;
+
   bool get _enabled => widget.onClick != null;
 
   bool get _disabled => !_enabled;
@@ -56,7 +58,12 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
     return Opacity(
       opacity: _disabled ? 0.5 : 1,
       child: GestureDetector(
-        onTap: () => setState(() => buttonPressed = true),
+        onTap: () {
+          setState(() {
+            buttonPressed = true;
+            animationCompleted = false;
+          });
+        },
         child: SizedBox(
           height: widget.buttonHeight,
           width: widget.buttonWidth,
@@ -82,9 +89,12 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                     const Duration(milliseconds: 300),
                 curve: widget.animationCurve ?? Curves.ease,
                 onEnd: () {
-                  setState(() => buttonPressed = false);
-                  if (_enabled) {
-                    widget.onClick!();
+                  if (!animationCompleted) {
+                    animationCompleted = true;
+                    setState(() => buttonPressed = false);
+                    if (_enabled) {
+                      widget.onClick!();
+                    }
                   }
                 },
                 child: Container(
