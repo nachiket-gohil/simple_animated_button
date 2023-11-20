@@ -23,3 +23,7 @@
 - `onClick` button property executing double clicks
 ### Changed
 - `pubspec.yaml` as per standards
+
+## [0.0.6] - 2023-11-20
+### Changed
+- Reduced Elevation for ElevatedLayerButton()
