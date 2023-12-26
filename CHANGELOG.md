@@ -27,3 +27,10 @@
 ## [0.0.6] - 2023-11-20
 ### Changed
 - Reduced Elevation for ElevatedLayerButton()
+
+## [0.0.7] - 2023-12-26
+### Added
+- Conditional animation flag for `TrailingButton()`
+### Changed
+- Turned off animation when null for `ElevatedLayerButton()`
+- `example` app name in android and ios

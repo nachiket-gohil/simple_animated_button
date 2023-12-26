@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   animationDuration: const Duration(milliseconds: 400),
                   trailingMovement: 10,
                   curve: Curves.ease,
+                  enableAnimation: true,
                 ),
               ),
               section(

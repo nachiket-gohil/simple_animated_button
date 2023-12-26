@@ -63,10 +63,12 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
       opacity: _disabled ? 0.5 : 1,
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            buttonPressed = true;
-            animationCompleted = false;
-          });
+          if (!_disabled) {
+            setState(() {
+              buttonPressed = true;
+              animationCompleted = false;
+            });
+          }
         },
         child: SizedBox(
           height: widget.buttonHeight,
@@ -81,19 +83,18 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   width: (widget.buttonWidth ?? 100) - 10,
                   height: (widget.buttonHeight ?? 40) - 10,
                   decoration: widget.baseDecoration?.copyWith(
-                    borderRadius: widget.borderRadius,
-                    border: Border.all(color: Colors.black),
-                  ) ??
-                  const BoxDecoration(
-                    color: Colors.black,
-                  ),
+                        borderRadius: widget.borderRadius,
+                        border: Border.all(color: Colors.black),
+                      ) ??
+                      const BoxDecoration(
+                        color: Colors.black,
+                      ),
                 ),
               ),
               AnimatedPositioned(
-                bottom: buttonPressed ? 0 : 4,
-                right: buttonPressed ? 0 : 4,
-                duration: widget.animationDuration ??
-                    const Duration(milliseconds: 300),
+                bottom: _enabled ? (buttonPressed ? 0 : 4) : 4,
+                right: _enabled ? (buttonPressed ? 0 : 4) : 4,
+                duration: widget.animationDuration ?? const Duration(milliseconds: 300),
                 curve: widget.animationCurve ?? Curves.ease,
                 onEnd: () {
                   if (!animationCompleted) {
@@ -109,12 +110,12 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   height: (widget.buttonHeight ?? 100) - 10,
                   alignment: Alignment.center,
                   decoration: widget.topDecoration?.copyWith(
-                      borderRadius: widget.borderRadius,
-                      border: Border.all(color: Colors.black),
-                    ) ??
-                    const BoxDecoration(
-                      color: Colors.black,
-                    ),
+                        borderRadius: widget.borderRadius,
+                        border: Border.all(color: Colors.black),
+                      ) ??
+                      const BoxDecoration(
+                        color: Colors.black,
+                      ),
                   child: widget.topLayerChild,
                 ),
               ),

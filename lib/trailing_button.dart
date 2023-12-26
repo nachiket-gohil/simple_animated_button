@@ -37,6 +37,9 @@ class TrailingButton extends StatefulWidget {
   /// Define Movement Value for button - eg. 10
   final double? trailingMovement;
 
+  /// Define if Arrow should animate or not
+  final bool enableAnimation;
+
   const TrailingButton({
     Key? key,
     required this.buttonWidth,
@@ -46,6 +49,7 @@ class TrailingButton extends StatefulWidget {
     required this.onClick,
     required this.animationDuration,
     required this.curve,
+    required this.enableAnimation,
     this.labelStyle,
     this.trailingGap,
     this.buttonMargin,
@@ -68,9 +72,8 @@ class _TrailingButtonState extends State<TrailingButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: (widget.buttonWidth ?? 150) +
-          (widget.trailingGap ?? 4) +
-          (widget.trailingMovement ?? 8),
+      width:
+          (widget.buttonWidth ?? 150) + (widget.trailingGap ?? 4) + (widget.trailingMovement ?? 8),
       height: widget.buttonHeight ?? 40,
       alignment: Alignment.center,
       margin: widget.buttonMargin,
@@ -78,10 +81,15 @@ class _TrailingButtonState extends State<TrailingButton> {
         opacity: _disabled ? 0.5 : 1,
         child: GestureDetector(
           onTap: () {
-            setState(() {
-              buttonPressed = true;
-              animationCompleted = false;
-            });
+            if (!_disabled) {
+              setState(() {
+                buttonPressed = true;
+                animationCompleted = false;
+              });
+              if (!widget.enableAnimation) {
+                widget.onClick!();
+              }
+            }
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -94,10 +102,11 @@ class _TrailingButtonState extends State<TrailingButton> {
               SizedBox(width: widget.trailingGap ?? 4),
               AnimatedPadding(
                 padding: EdgeInsets.only(
-                  left: buttonPressed ? (widget.trailingMovement ?? 8) : 0,
+                  left: widget.enableAnimation
+                      ? (buttonPressed ? (widget.trailingMovement ?? 8) : 0)
+                      : widget.trailingGap ?? 4,
                 ),
-                duration: widget.animationDuration ??
-                    const Duration(milliseconds: 600),
+                duration: widget.animationDuration ?? const Duration(milliseconds: 600),
                 curve: widget.curve ?? Curves.ease,
                 onEnd: () {
                   if (!animationCompleted) {
