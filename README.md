@@ -38,7 +38,6 @@ ElevatedLayerButton(
   topDecoration: BoxDecoration(  
     color: Colors.amber,  
     border: Border.all(),  
-    borderRadius: BorderRadius.circular(20)
   ),
   topLayerChild: Text(  
     "ElevatedLayerButton()",  
@@ -47,7 +46,6 @@ ElevatedLayerButton(
   baseDecoration: BoxDecoration(  
     color: Colors.green,  
     border: Border.all(),  
-    borderRadius: BorderRadius.circular(20),
   ),  
 ),
 ```
