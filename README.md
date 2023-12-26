@@ -21,6 +21,10 @@ dependencies:
 import 'package:simple_animated_button/simple_animated_button.dart';
 ```
 
+[4] To contribute in this package you can:
+- Raise the Merge Request
+- Reach out to nachiketgohil185@gmail.com
+
 ## Usage Example
 
 > You can also Render the Basic UI of button by just adding required parameters.

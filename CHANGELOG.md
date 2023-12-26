@@ -34,3 +34,7 @@
 ### Changed
 - Turned off animation when null for `ElevatedLayerButton()`
 - `example` app name in android and ios
+
+## [0.0.8] - 2023-12-26
+### Changed
+- `README.me` and formatted code.
