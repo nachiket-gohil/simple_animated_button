@@ -75,7 +75,7 @@ HorizontalFillButton(
 <img src="https://raw.githubusercontent.com/NachiketGohil/simple_animated_button/main/example/screenshots/vertical.png" width="350" alt="vertical fill button preview">
 
 ```dart
-VerticalFillButton(  
+VerticalFillButton(
   onClick: () {},  
   fillingDuration: const Duration(milliseconds: 700),  
   curve: Curves.easeInOut,  
@@ -96,7 +96,7 @@ VerticalFillButton(
 <img src="https://raw.githubusercontent.com/NachiketGohil/simple_animated_button/main/example/screenshots/rounded.png" width="350" alt="rouded fill button preview">
 
 ```dart
-RoundedFillButton(  
+RoundedFillButton(
   onClick: () {},  
   buttonWidth: 240,  
   buttonHeight: 40,  
