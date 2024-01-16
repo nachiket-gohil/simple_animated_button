@@ -85,7 +85,7 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   decoration: widget.baseDecoration?.copyWith(
                         borderRadius: widget.borderRadius,
                       ) ??
-                      const BoxDecoration(
+                      BoxDecoration(
                         color: Colors.black,
                         border: Border.all(color: Colors.black),
                       ),
@@ -94,8 +94,7 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
               AnimatedPositioned(
                 bottom: _enabled ? (buttonPressed ? 0 : 4) : 4,
                 right: _enabled ? (buttonPressed ? 0 : 4) : 4,
-                duration: widget.animationDuration ??
-                    const Duration(milliseconds: 300),
+                duration: widget.animationDuration ?? const Duration(milliseconds: 300),
                 curve: widget.animationCurve ?? Curves.ease,
                 onEnd: () {
                   if (!animationCompleted) {
@@ -113,7 +112,7 @@ class _ElevatedLayerButtonState extends State<ElevatedLayerButton> {
                   decoration: widget.topDecoration?.copyWith(
                         borderRadius: widget.borderRadius,
                       ) ??
-                      const BoxDecoration(
+                      BoxDecoration(
                         color: Colors.black,
                         border: Border.all(color: Colors.black),
                       ),
