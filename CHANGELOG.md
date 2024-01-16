@@ -38,3 +38,7 @@
 ## [0.0.8] - 2023-12-26
 ### Changed
 - `README.me` and formatted code.
+
+## [0.0.9] - 2024-01-16
+### Changed
+- `ElevatedLayerButton()` Removed Black Border color from Layer Decoration.
